@@ -15,19 +15,16 @@
 
         public bool Negative { get; init; }
 
-        public static NumberCustomType EnterNumber(string message)
+        public static bool TryParse(string input, out NumberCustomType? result)
         {
-            Dictionary<int, int> digOfNumber = [];
-            string inputNumber = string.Empty;
-            bool inputIsNumber = false;
-            while (!inputIsNumber)
+            Dictionary<int, int> digOfNumber = new();
+            if (IsNumber(input, digOfNumber))
             {
-                Console.Write(message);
-                inputNumber = Console.ReadLine()!;
-                inputIsNumber = IsNumber(inputNumber, digOfNumber);
+                result = new NumberCustomType(digOfNumber);
+                return true;
             }
-
-            return new NumberCustomType(digOfNumber);
+            result = null;
+            return false;
         }
 
         static bool IsNumber(string inputNumberForChecking, Dictionary<int, int> digitsOfNumber)
@@ -55,7 +52,7 @@
             return true;
         }
 
-        private static void RemoveUselessZeroDigits(Dictionary<int, int> digitsOfNumber)
+        static void RemoveUselessZeroDigits(Dictionary<int, int> digitsOfNumber)
         {
             for (int i = digitsOfNumber.Count - 1; i >= 0 && digitsOfNumber.Count > 1; i--)
             {
@@ -190,7 +187,7 @@
 
         public NumberCustomType(Dictionary<int, int> digitsOfNumber)
         {
-            this.DigitsOfNumbers = digitsOfNumber;
+            DigitsOfNumbers = digitsOfNumber;
         }
     }
 }
