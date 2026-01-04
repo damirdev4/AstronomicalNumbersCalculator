@@ -137,7 +137,6 @@
                 multiplicationResult += new NumberCustomType(multiplicationResultDict);
             }
 
-
             return multiplicationResult;
         }
 

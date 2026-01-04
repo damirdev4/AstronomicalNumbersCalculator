@@ -40,7 +40,6 @@ static NumberCustomType RequestNumber(string message)
         Console.Write(message);
         string input = Console.ReadLine()!;
 
-        // Используем ваш TryParse
         if (NumberCustomType.TryParse(input, out result))
         {
             return result!;
